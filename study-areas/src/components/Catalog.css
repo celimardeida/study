@@ -4,7 +4,7 @@
     flex-wrap: wrap;
   }
 
-.campus-map {
+/* .campus-map {
     height: auto;
     width: 90%;
     align-self: center;
@@ -16,5 +16,26 @@
     width: 25%;
     align-self: center;
     pointer-events: none;
+  } */
+
+  .titleCatalog {
+    font-family: Monday;
+    text-align: left;
+    margin-left: 2%;
+    margin-top: 2%;
+    font-size: 70px;
   }
+
+  .availableClassrooms {
+    margin: 0 20px;
+    font-family: Monday;
+    font-size: 30px;
+  }
+
+  .allClassrooms {
+    margin: 0 5px;
+    font-weight: 500;
+    font-family: Monday;
+    font-size: 20px;
+    }
   

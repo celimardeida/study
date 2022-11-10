@@ -1,35 +1,40 @@
 .header {
     display: flex;
+    font-family: Monday;
     align-items: center;
     justify-content: space-evenly;
-    height: 100px;
-    background-color: rgb(30, 78, 30);
-    color: white;
-  }
+    height: 90px;
+    background-color: rgb(255, 255, 255);
   
+  }
+
   .logo {
-    font-family: 'Belleza', sans-serif;
+    margin-left: 2%;
+    margin-right: 2%;
   }
   
   .links {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-family: 'Roboto', sans-serif;
-  }
-
-  .paw-logo {
-    display: flex;
-    height: 80%;
-    width: 8%;
-    align-self: center;
-    pointer-events: none;
-  }
-
-  a {
-    margin: 0 20px;
+    color: rgb(33, 36, 39);
     text-decoration: none;
-    color: white;
-    font-weight: 600;
+    float: left;
+    letter-spacing: 1px;
+    margin: 10px;
+    margin-right: auto;
+    font-size: 20px;
+    
   }
+  .links:hover{
+    color:rgb(11, 124, 11)
+  }
+
+  .divider {
+    size: 50px;
+    border-top: 4px  solid rgb(11, 124, 11);
+    margin-top: -10px;
+    opacity: 1;
+  }
+
   

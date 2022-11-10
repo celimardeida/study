@@ -11,3 +11,11 @@
     height: fit-content;
     margin-left: 40px;
 }
+
+.titleRecommend {
+    font-family: Monday;
+    text-align: left;
+    margin-left: 2%;
+    margin-top: 2%;
+    font-size: 70px;
+  }

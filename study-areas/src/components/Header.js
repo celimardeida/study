@@ -1,19 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './Header.css'
-import paw from './paw.png';
 
 const Header = () => {
     return (
+        <div>
         <div className="header">
-            <img src={paw} className="paw-logo" />
             <h1 className="logo">Study Areas</h1>
             <div className="links">
-                <Link to="/recommender">Classroom Recommendation</Link>
-                <Link to="/">Classroom Catalog</Link>
-                <Link to="/profile">Profile</Link>
+                <Link to="/" className='links'>Catalog</Link>
+                <Link to="/recommender" className='links' >Recommendations</Link>
+                <Link to="/profile" className='links' >Profile</Link>
             </div>
         </div>
+        <hr className='divider'></hr>
+    </div>
     )
 }
 

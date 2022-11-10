@@ -34,7 +34,7 @@ const RecommendClassroom = () => {
 
     return (
         <div className="form">
-            <h1 className="title">Request Form</h1>
+            <div className="titleRecommend">Recommendations</div>
             <label>Location</label>
             <input onChange={locationHandler}></input>
             <label>Time Needed</label>

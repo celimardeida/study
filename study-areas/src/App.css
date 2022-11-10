@@ -49,3 +49,9 @@ button {
   font-weight: bold;
   color: white;
 }
+
+@font-face {
+  font-family: "Monday";   
+  src: local("Monday"),
+    url("./Fonts/monday-sans.regular.ttf");
+}

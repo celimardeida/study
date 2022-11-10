@@ -1,13 +1,13 @@
 import React, {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
-import './Profile.css'
+import './SignUp.css'
 import { Link } from 'react-router-dom'
 
 //import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
 
-function Profile() {
+function SignUp() {
   // React States
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -68,9 +68,19 @@ function Profile() {
           {renderErrorMessage("uname")}
         </div>
         <div className="input-container">
-          <label>Password </label>
-          <input type="password" name="pass" required />
+          <label>Institutional Email </label>
+          <input type="text" name="pass" required />
           {renderErrorMessage("pass")}
+        </div>
+        <div className="input-container">
+          <label>Password </label>
+          <input type="password" name="uname" required />
+          {renderErrorMessage("uname")}
+        </div>
+        <div className="input-container">
+          <label>Verify Password </label>
+          <input type="password" name="uname" required />
+          {renderErrorMessage("uname")}
         </div>
         <div className="button-container">
           <input type="submit" />
@@ -82,13 +92,12 @@ function Profile() {
   return (
     <div className="app">
       <div className="login-form">
-        <div className="title">Sign In</div>
+        <div className="title">Sign Up</div>
         {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
-        <a>Not registered? <Link to="/signup" className='signup'>Sign Up</Link></a>
       </div>
     </div>
   );
 }
 
-export default Profile
+export default SignUp
 
