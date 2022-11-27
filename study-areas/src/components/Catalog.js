@@ -1,60 +1,107 @@
 import {useEffect, useState} from 'react'
 import Classroom from './Classroom'
 import './Catalog.css'
-import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardLink } from 'mdb-react-ui-kit';
-import map from './uprm_map.png';
-import mapkey1 from './mapkey1.png';
-import mapkey2 from './mapkey2.png';
-import mapkey3 from './mapkey3.png';
-import mapkey4 from './mapkey4.png';
+import {Card} from "react-bootstrap"
+import './Box.css'
+import { json, useNavigate } from 'react-router-dom'
+import React from 'react'
 
 
-const Catalog = () => {
-    const [data, setData] = useState([]);
-    useEffect(() => {
-        fetch('http://localhost:8080/api/classrooms')
-        .then(response => response.json())
-        .then(json => setData(json))
-    }, [])
-    return (
-        <div>
-            <div className="titleCatalog">Catalog</div>
-            {/* <img src={map} className="campus-map" />
-            <img src={mapkey1} className="map-key" />
-            <img src={mapkey2} className="map-key" />
-            <img src={mapkey3} className="map-key" />
-            <img src={mapkey4} className="map-key" /> */}
-            <div className="classrooms">
-                {data.map((classroom) => (
-                    <Classroom code={classroom.code} building={classroom.building} image={classroom.img}/>
-                ))}
-            </div>
-            <div className="availableClassrooms" >Available Classrooms</div>
-            <div className="allClassrooms" >Stefani-203</div>
-            <div className="allClassrooms" >Stefani-105 B (Centro de Cómputos)</div>
-            <div className="allClassrooms" >Stefani-105 D (Centro de Cómputos)</div>
-            <div className="allClassrooms" >II-222 (Peceras)</div>
-            <div className="allClassrooms" >II-108 (Centro de Cómputos)</div>
+class Catalog extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        error: null,
+        isLoaded: false,
+        studyAreas: []
+      };
+    }
+  
+    componentDidMount() {
+      fetch("http://rum-study-areas-backend.herokuapp.com/api/studyareas/?format=json")
+        .then(res => res.json())
+        .then(
+          (result) => {
+            this.setState({
+              isLoaded: true,
+              studyAreas: result.studyAreas
+            });
+          },
+          // Note: it's important to handle errors here
+          // instead of a catch() block so that we don't swallow
+          // exceptions from actual bugs in components.
+          (error) => {
+            this.setState({
+              isLoaded: true,
+              error
+            });
+          }
+        )
+    }
+  
+    render() {
+      const { error, isLoaded, studyAreas } = this.state;
+      if (error) {
+        return <div>Error: {error.message}</div>;
+      } else if (!isLoaded) {
+        return <div>Loading...</div>;
+      } else {
+        return (
+            
+          <div>
+            {studyAreas.map(studyAreas => (
+                <Card style={{ width: '18rem' }} className="box">
+                    <Card.Body>
+                        <Card.Title>{studyAreas.name}</Card.Title>
+                        <Card.Subtitle className="mb-2 text-muted">{studyAreas.building}</Card.Subtitle>
+                        <Card.Text>
+                            {studyAreas.features}
+                        </Card.Text>
+                        <Card.Link href="#">Reviews</Card.Link>
+                    </Card.Body>
+                </Card>
+            ))}
+          </div>
+        );
+      }
+    }
+  }
 
-            <MDBCard>
-                <MDBCard>
-                    <MDBCardBody>
-                        <MDBCardTitle>Panel title</MDBCardTitle>
-                        <MDBCardTitle subtitle className='mb-2 text-muted'>
-                            Panel subtitle
-                        </MDBCardTitle>
-                        <MDBCardText>
-                            Some quick example text to build on the panel title and make up the bulk of the panel's content.
-                        </MDBCardText>
-                        <MDBCardLink href='#'>Panel link</MDBCardLink>
-                        <MDBCardLink href='#'>Another link</MDBCardLink>
-                        </MDBCardBody>
-                    </MDBCard>
-                </MDBCard>
-        </div>
 
+  export default Catalog;
+
+
+// const Catalog = () => {
+//     const [data, setData] = useState([]);
+//     useEffect(() => {
+//         fetch('http://rum-study-areas-backend.herokuapp.com/api/studyareas/')
+//         .then(response => response.json())
+//         .then(json => setData(json))
+//     }, [])
+
+//     const renderCard = (card, index) =>{
+//         return(
+        //     <Card style={{ width: '18rem' }} key={index} className="box">
+        //     <Card.Body>
+        //         <Card.Title>{data.name}</Card.Title>
+        //         <Card.Subtitle className="mb-2 text-muted">{data.building}</Card.Subtitle>
+        //          <Card.Text>
+        //             {data.features}
+        //         </Card.Text>
+        //         <Card.Link href="#">Reviews</Card.Link>
+        //     </Card.Body>
+        // </Card>
+//         )
+//     }
+
+//     return (
+//         <div>
+//             <div className="titleCatalog">Catalog</div>
+//             <div>{data.name}</div>
+//             <div className="grid">{data.map(renderCard)}</div>
+//         </div>
         
-    )
-}
+//     )
+// }
 
-export default Catalog
+// export default Catalog
